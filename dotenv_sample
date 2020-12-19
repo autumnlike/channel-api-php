@@ -1,0 +1,3 @@
+# API KEYs
+CHANNEL_ACCESS_KEY = 'your access key'
+CHANNEL_ACCESS_SECRET = 'your access secret'
