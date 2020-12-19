@@ -1,6 +1,12 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * 配信IDをもとにユーザーへのチャットを削除するコマンド
+ *
+ * $ php Command/DeleteAllUserChatByCampaignId.php 1234<配信ID>
+ */
+
 require dirname(__FILE__) . '/../dispatcher.php';
 
 use Lib\Client\Marketing;
