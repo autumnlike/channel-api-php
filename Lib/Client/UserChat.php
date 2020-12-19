@@ -29,4 +29,20 @@ class UserChat extends Base
 
         return $body;
     }
+
+    /**
+     * destroy user chat by user_chat_id
+     *
+     * @param string $userChatId
+     */
+    public function destroyUserChatByUserChatId(string $userChatId)
+    {
+        $uri = "https://api.channel.io/open/v3/user-chats/{$userChatId}/destroy";
+
+        $body = $this->send('DELETE', $uri, [
+            'headers' => $this->getHeaders(),
+        ]);
+
+        return $body;
+    }
 }
