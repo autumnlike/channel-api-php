@@ -32,6 +32,11 @@ class Base
     private $accessSecret;
 
     /**
+     * @var string
+     */
+    protected $rootUri = 'https://api.channel.io/open/v3';
+
+    /**
      * construct
      */
     public function __construct()

@@ -17,7 +17,7 @@ class UserChat extends Base
      */
     public function getUserChatsByUserId(string $userId): array
     {
-        $uri = "https://api.channel.io/open/v3/users/{$userId}/user-chats";
+        $uri = "{$this->rootUri}/users/{$userId}/user-chats";
 
         $body = $this->send('GET', $uri, [
             'headers' => $this->getHeaders(),
@@ -37,7 +37,7 @@ class UserChat extends Base
      */
     public function destroyUserChatByUserChatId(string $userChatId)
     {
-        $uri = "https://api.channel.io/open/v3/user-chats/{$userChatId}/destroy";
+        $uri = "{$this->rootUri}/user-chats/{$userChatId}/destroy";
 
         $body = $this->send('DELETE', $uri, [
             'headers' => $this->getHeaders(),
