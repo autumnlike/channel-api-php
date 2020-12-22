@@ -37,6 +37,15 @@ class Base
     protected $rootUri = 'https://api.channel.io/open/v3';
 
     /**
+     * botName パラメータに設定する値
+     *
+     * FIXME 動的に設定したい場合はこれを `$_ENV` にする
+     *
+     * @var string
+     */
+    protected $botName = 'channel-api-php';
+
+    /**
      * construct
      */
     public function __construct()

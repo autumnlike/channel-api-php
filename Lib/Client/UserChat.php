@@ -31,7 +31,29 @@ class UserChat extends Base
     }
 
     /**
+     * trash user chat by user_chat_id
+     *
+     * @param string $userChatId
+     */
+    public function trashUserChatByUserChatId(string $userChatId)
+    {
+        $uri = "{$this->rootUri}/user-chats/{$userChatId}/trash";
+
+        $body = $this->send('PATCH', $uri, [
+            'headers' => $this->getHeaders(),
+            'query' => [
+                'botName' => $this->botName
+            ]
+        ]);
+
+        return $body;
+    }
+
+    /**
      * destroy user chat by user_chat_id
+     *
+     * destroy は trash 済みでないと無効
+     * destroy したら2度ともとに戻らない
      *
      * @param string $userChatId
      */

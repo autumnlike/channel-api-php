@@ -56,8 +56,11 @@ function deleteAll(array $users, int $campaignId)
         $userChats = $userChatClient->getUserChatsByUserId($userId);
         $userChatId = getUserChatIdBySourceId($userChats, $campaignId);
 
+        if (is_null($userChatId)) {
+            continue;
+        }
         // ユーザーチャットを削除
-        $userChatClient->destroyUserChatByUserChatId($userChatId);
+        $userChatClient->trashUserChatByUserChatId($userChatId);
     }
 }
 
