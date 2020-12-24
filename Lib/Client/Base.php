@@ -85,7 +85,7 @@ class Base
 
         } catch (GuzzleException $e) {
             // FIXME エラーレスポンスを正しく返したい
-            throw new \Exception('failed to send:' . $e->getMessage() . 'status: ' . $e->getCode());
+            throw new \Exception('failed to send:' . $e->getMessage() . 'status: ' . $e->getCode() . 'body: ' .  \GuzzleHttp\Psr7\str($e->getResponse()));
         }
         return $responseBody;
     }
