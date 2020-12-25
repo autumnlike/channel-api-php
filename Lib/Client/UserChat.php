@@ -17,7 +17,7 @@ class UserChat extends Base
      */
     public function getUserChatsByUserId(string $userId): array
     {
-        $uri = "{$this->rootUri}/users/{$userId}/user-chats";
+        $uri = "users/{$userId}/user-chats";
 
         $body = $this->send('GET', $uri, [
             'headers' => $this->getHeaders(),
@@ -37,7 +37,7 @@ class UserChat extends Base
      */
     public function trashUserChatByUserChatId(string $userChatId)
     {
-        $uri = "{$this->rootUri}/user-chats/{$userChatId}/trash";
+        $uri = "user-chats/{$userChatId}/trash";
 
         $body = $this->send('PATCH', $uri, [
             'headers' => $this->getHeaders(),
@@ -59,7 +59,7 @@ class UserChat extends Base
      */
     public function destroyUserChatByUserChatId(string $userChatId)
     {
-        $uri = "{$this->rootUri}/user-chats/{$userChatId}/destroy";
+        $uri = "user-chats/{$userChatId}/destroy";
 
         $body = $this->send('DELETE', $uri, [
             'headers' => $this->getHeaders(),

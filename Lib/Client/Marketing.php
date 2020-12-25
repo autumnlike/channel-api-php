@@ -17,7 +17,7 @@ class Marketing extends Base
      */
     public function getUsersByCampaignId(int $campaignId, int $limit = 500, ?string $next = null): array
     {
-        $uri = "{$this->rootUri}/mkt/campaigns/{$campaignId}/campaign-users";
+        $uri = "mkt/campaigns/{$campaignId}/campaign-users";
 
         $body = $this->send('GET', $uri, [
             'headers' => $this->getHeaders(),
@@ -39,7 +39,7 @@ class Marketing extends Base
      */
     public function getUsersByOneTimeMessageId(int $messageId, int $limit = 500, ?string $next = null): array
     {
-        $uri = "{$this->rootUri}/mkt/one-time-msgs/{$messageId}/one-time-msg-users";
+        $uri = "mkt/one-time-msgs/{$messageId}/one-time-msg-users";
 
         $body = $this->send('GET', $uri, [
             'headers' => $this->getHeaders(),

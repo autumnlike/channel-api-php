@@ -34,7 +34,7 @@ class Base
     /**
      * @var string
      */
-    protected $rootUri = 'https://api.channel.io/open/v3';
+    protected $rootUri = 'https://api.channel.io/open/v3/';
 
     /**
      * botName パラメータに設定する値
@@ -50,7 +50,9 @@ class Base
      */
     public function __construct()
     {
-        $this->client = new Client();
+        $this->client = new Client([
+            'base_uri' => $this->rootUri,
+        ]);
 
         // .env での設定が必須
         $this->accessKey = $_ENV['CHANNEL_ACCESS_KEY'];
@@ -85,7 +87,7 @@ class Base
 
         } catch (GuzzleException $e) {
             // FIXME エラーレスポンスを正しく返したい
-            throw new \Exception('failed to send:' . $e->getMessage() . 'status: ' . $e->getCode() . 'body: ' .  \GuzzleHttp\Psr7\str($e->getResponse()));
+            throw new \Exception('failed to send:' . $e->getMessage() . ', uri: ' . $e->getRequest()->getUri() . ', status: ' . $e->getCode() . ', option: ' . json_encode($option) . ', response_body: ' .  \GuzzleHttp\Psr7\str($e->getResponse()));
         }
         return $responseBody;
     }
