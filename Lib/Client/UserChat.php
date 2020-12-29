@@ -8,7 +8,7 @@ use Lib\Client\Base;
 /**
  * UserChat APIs
  */
-class UserChat extends Base
+final class UserChat extends Base
 {
     /**
      * get user_chats by user_id

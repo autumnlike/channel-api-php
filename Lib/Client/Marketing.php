@@ -8,7 +8,7 @@ use Lib\Client\Base;
 /**
  * Marketing APIs
  */
-class Marketing extends Base
+final class Marketing extends Base
 {
     /**
      * get users by campaign_id
