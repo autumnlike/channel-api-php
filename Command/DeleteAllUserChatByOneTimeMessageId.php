@@ -7,11 +7,11 @@ use Lib\Client\Marketing;
 use Command\Task\UserChatTask;
 
 /**
- * 自動配信IDをもとにユーザーへのチャットを削除するコマンド
+ * 一斉配信IDをもとにユーザーへのチャットを削除するコマンド
  *
- * $ php ./Command/execute.php DeleteAllUserChatByCampaignId <配信ID>
+ * $ php ./Command/execute.php DeleteAllUserChatByOneTimeMessageId <配信ID>
  */
-final class DeleteAllUserChatByCampaignId extends BaseCommand
+final class DeleteAllUserChatByOneTimeMessageId extends BaseCommand
 {
     /**
      * 実行関数
@@ -25,7 +25,7 @@ final class DeleteAllUserChatByCampaignId extends BaseCommand
             exit;
         }
 
-        $campaignId = (int)$this->params[0];
+        $oneTimeMessageId = (int)$this->params[0];
         $marketingClient = new Marketing();
 
         $next = null;
@@ -33,8 +33,8 @@ final class DeleteAllUserChatByCampaignId extends BaseCommand
 
         while(true) {
 
-            $response = $marketingClient->getUsersByCampaignId($campaignId, 500, $next);
-            $users = $response['campaignUsers'];
+            $response = $marketingClient->getUsersByOneTimeMessageId($oneTimeMessageId, 500, $next);
+            $users = $response['oneTimeMsgUsers'];
 
             if (!$users || !is_array($users)) {
                 $this->out('対象データがありませんでした');
@@ -44,7 +44,7 @@ final class DeleteAllUserChatByCampaignId extends BaseCommand
             $totalCount += count($users);
             $this->out($totalCount . '件取得完了');
 
-            UserChatTask::deleteAll($users, $campaignId);
+            UserChatTask::deleteAll($users, $oneTimeMessageId);
 
             $this->out($totalCount . '件削除完了');
 

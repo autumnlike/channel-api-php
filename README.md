@@ -20,8 +20,32 @@ API credentials の取得方法は [Channel developers page](https://developers.
 
 ## 実行
 
-### 指定配信IDのチャットを削除する
+### 指定自動配信IDのチャットを削除する
 
 ```
-$ php Command/DeleteAllUserChatByCampaignId.php 12345<配信ID>
+$ php ./Command/execute.php DeleteAllUserChatByCampaignId <配信ID>
+```
+
+配信IDは [マーケティング] ページにて確認できます。
+![image](https://user-images.githubusercontent.com/5888188/103265522-2284b300-49f1-11eb-97ab-f708c405851b.png)
+
+
+### 指定一斉配信IDのチャットを削除する
+
+```
+$ php ./Command/execute.php DeleteAllUserChatByOneTimeMessageId <配信ID>
+```
+
+### REPLでの動作検証コンソール
+
+```
+$ php ./Command/console.php
+```
+
+## 開発
+
+### デバッグ
+
+```php
+breakpoint(); // or bp();
 ```

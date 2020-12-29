@@ -14,8 +14,9 @@ class UserChat extends Base
      * get user_chats by user_id
      *
      * @param string $userId
+     * @param string $next
      */
-    public function getUserChatsByUserId(string $userId): array
+    public function getUserChatsByUserId(string $userId, string $next = null): array
     {
         $uri = "users/{$userId}/user-chats";
 
@@ -24,6 +25,7 @@ class UserChat extends Base
             'query' => [
                 'limit' => 500, // 最大値
                 'sortOrder' => 'desc',
+                'since' => $next
             ],
         ]);
 
