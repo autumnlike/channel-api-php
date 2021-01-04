@@ -24,6 +24,7 @@ final class UserChatTask
             }
 
             // ユーザーチャットを削除
+            $userChatClient = new UserChat();
             $userChatClient->trashUserChatByUserChatId($userChatId);
         }
     }
@@ -41,10 +42,10 @@ final class UserChatTask
 
         while (true) {
             $response = $userChatClient->getUserChatsByUserId($userId, $next);
-            if (empty($userChats['userChats'])) {
+            if (empty($response['userChats'])) {
                 return null;
             }
-            foreach ($userChats['userChats'] as $userChat) {
+            foreach ($response['userChats'] as $userChat) {
                 if ($userChat['sourceId'] == $sourceId) {
                     return $userChat['id'];
                 }
